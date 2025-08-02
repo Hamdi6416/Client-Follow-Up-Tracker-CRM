@@ -3,7 +3,7 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - main  # Change if your deployment branch is different
+      - main  # Change if you deploy from a different branch
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Match your project’s Node version
+          node-version: '18'  # Adjust if needed
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
@@ -26,4 +26,4 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           echo "$FIREBASE_SERVICE_ACCOUNT" > firebase-key.json
-          firebase deploy --project your-project-id --token "$(cat firebase-key.json | jq -r .token)"
+          firebase deploy --project my-client-crm --token "$(cat firebase-key.json | jq -r .token)"
